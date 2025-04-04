@@ -1,0 +1,53 @@
+# QuickSort Implementation in Python
+
+```python
+def quicksort(arr):
+    """
+    Sorts an array using the QuickSort algorithm.
+    
+    Args:
+        arr: List of comparable elements
+        
+    Returns:
+        Sorted list
+    """
+    if len(arr) <= 1:
+        return arr
+    
+    # Select pivot (using middle element to avoid worst-case scenarios on already sorted arrays)
+    pivot = arr[len(arr) // 2]
+    
+    # Partition the array
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    
+    # Recursively sort sub-arrays and combine the result
+    return quicksort(left) + middle + quicksort(right)
+
+# Example usage
+if __name__ == "__main__":
+    # Test with different arrays
+    test_arrays = [
+        [3, 6, 8, 10, 1, 2, 1],
+        [5, 2, 9, 1, 7, 6, 3],
+        [1, 1, 1, 1],
+        [],
+        [10, 9, 8, 7, 6]
+    ]
+    
+    for arr in test_arrays:
+        print(f"Original: {arr}")
+        sorted_arr = quicksort(arr)
+        print(f"Sorted:   {sorted_arr}")
+        print()
+```
+
+This implementation:
+- Uses list comprehensions for cleaner code
+- Selects the middle element as the pivot to avoid worst-case performance on already sorted arrays
+- Handles duplicate elements by creating a middle array
+- Has O(n log n) average time complexity, though worst case is O(n²)
+- Uses O(n) extra space due to the creation of new lists
+
+If you need an in-place implementation with less memory usage, I can provide that as well.
